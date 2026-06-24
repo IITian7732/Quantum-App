@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quantum - Elevating Presence</title>
+<!-- Sora and Inter Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#cca730",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#f8f6ff",
+                    "surface-container-highest": "#dde4e6",
+                    "inverse-on-surface": "#ebf2f4",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "on-primary-fixed-variant": "#2f3f92",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#022016",
+                    "surface-container-low": "#eef5f7",
+                    "primary-fixed-dim": "#bac3ff",
+                    "primary": "#4352a5",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#735c00",
+                    "secondary": "#466557",
+                    "secondary-container": "#c8ead8",
+                    "inverse-primary": "#bac3ff",
+                    "surface-bright": "#f4fafd",
+                    "surface": "#f4fafd",
+                    "outline": "#767683",
+                    "secondary-fixed": "#c8ead8",
+                    "on-surface-variant": "#454651",
+                    "secondary-fixed-dim": "#adcebd",
+                    "outline-variant": "#c6c5d3",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-container": "#e8eff1",
+                    "on-primary-fixed": "#00105b",
+                    "primary-fixed": "#dee0ff",
+                    "background": "#f4fafd",
+                    "tertiary-fixed": "#ffe088",
+                    "surface-tint": "#4858ab",
+                    "primary-container": "#5c6bc0",
+                    "inverse-surface": "#2b3234",
+                    "surface-container-high": "#e2e9ec",
+                    "on-secondary-container": "#4c6b5d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#161d1f",
+                    "surface-variant": "#dde4e6",
+                    "surface-dim": "#d4dbdd",
+                    "on-secondary-fixed-variant": "#2f4d40",
+                    "on-tertiary-container": "#4f3d00",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-surface": "#161d1f",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max-width": "1280px",
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "h1": ["Sora"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "h3": ["Sora"],
+                    "h1-mobile": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "author-accent": ["Sora"],
+                    "h2": ["Sora"]
+            },
+            "fontSize": {
+                    "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "author-accent": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 236, 239, 0.5);
+            box-shadow: 0 4px 20px rgba(67, 82, 165, 0.05);
+        }
+        .streak-pulse {
+            animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .8; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="auto_awesome">auto_awesome</span>
+<h1 class="font-h3 text-h3 font-bold tracking-tight text-primary">Quantum</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-surface-variant transition-colors" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional and warm studio portrait of a young male professional named John, lit with soft natural light, smiling gently. The background is a clean, minimalist office space with soft-focus greenery, maintaining the ethereal and premium light mode aesthetic of the Quantum app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ye0808yF0U9csgcJgpz1IstPqJ-_jQoyW_MBA4GhXOZsHprdANpQoCbpYPCN4LdMMJjO4luDbnA-kyfGWNwydOSLmh9LD07FH2aNNoolqWfg1wIdorf9VB486oKp8XJYuxd5ditp55gnCFQ_nCyZR81Y24QUnjg7JksYvxuxc4wLlxa1Cr5tlemcqHWpwOBuPq6tIM7M76IH0jkNnHFiyE7Fuo6egXAQtYvjTi_WbMaMyBzcpFylvp3P3snPrTJS1WDV4FR61PnA"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto space-y-16">
+<!-- Hero Greeting & Streak Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 space-y-4">
+<h2 class="font-h1-mobile md:font-h1 text-h1-mobile md:text-h1 text-on-surface">Good morning, John</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Take a deep breath. Your journey toward clarity continues today. Ready for your morning session?</p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-h3 text-body-md flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="play_circle" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                        Start Session
+                    </button>
+<button class="bg-secondary-container/50 text-on-secondary-container px-8 py-4 rounded-xl font-h3 text-body-md flex items-center gap-2 hover:bg-secondary-container transition-all">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                        View Insights
+                    </button>
+</div>
+</div>
+<!-- Streak Card (Bento Style) -->
+<div class="md:col-span-5">
+<!-- Using extreme red palette from design system -->
+<div class="glass-card p-8 rounded-2xl relative overflow-hidden flex flex-col items-center justify-center text-center space-y-4 border-error/10">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-[#93000a]/10 rounded-full blur-3xl"></div>
+<div class="relative">
+<span class="material-symbols-outlined text-6xl text-[#ba1a1a] streak-pulse" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-h2 text-h2 text-[#ba1a1a]">7 Day Streak</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Consistency is Mastery</p>
+</div>
+<div class="flex gap-2 mt-4">
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">M</div>
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">T</div>
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">W</div>
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">T</div>
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">F</div>
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">S</div>
+<div class="w-8 h-8 rounded-full bg-[#ba1a1a] text-on-primary flex items-center justify-center text-xs font-bold shadow-sm shadow-error/20">S</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Daily Insights section integrated from SCREEN_17 -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Daily Summary -->
+<div class="md:col-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-6">Progress</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface-variant">MINDFUL MINUTES</span>
+<span class="font-h3 text-primary text-xl">45 / 60</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-1000" style="width: 75%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface-variant">FOCUS SCORE</span>
+<span class="font-h3 text-secondary text-xl">88%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary transition-all duration-1000" style="width: 88%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex items-start gap-4 p-4 bg-primary-fixed/20 rounded-xl">
+<span class="material-symbols-outlined text-primary text-2xl shrink-0" data-icon="auto_graph">auto_graph</span>
+<div>
+<p class="font-body-sm text-on-surface font-semibold">Peak focus at 10:15 AM</p>
+</div>
+</div>
+</div>
+<!-- New Interactive Daily Insight Section (from SCREEN_17) -->
+<div class="md:col-span-2 glass-card p-8 md:p-10 rounded-2xl bg-surface-container-lowest flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
+<div class="space-y-6 relative z-10">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-primary px-3 py-1 bg-primary/5 rounded-full uppercase tracking-wider">Daily Insight</span>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2 rounded-full hover:bg-error/5" title="Favorite">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="space-y-6">
+<span class="material-symbols-outlined text-primary/20 text-5xl block" data-weight="fill">format_quote</span>
+<p class="font-h3 text-h3 md:text-[28px] text-on-surface leading-relaxed text-balance transition-all duration-500" id="quote-text">
+                            "The universe is change; our life is what our thoughts make it."
+                        </p>
+<div class="flex items-center gap-3">
+<span class="w-10 h-[1px] bg-outline-variant"></span>
+<span class="font-author-accent text-author-accent text-on-surface-variant tracking-wider uppercase" id="quote-author">Marcus Aurelius</span>
+</div>
+</div>
+</div>
+<div class="mt-10 relative z-10 flex flex-wrap gap-4 items-center">
+<button class="flex-grow md:flex-grow-0 flex items-center justify-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-full font-body-md font-semibold shadow-md hover:shadow-lg hover:opacity-95 active:scale-95 transition-all duration-300" id="generate-btn">
+<span class="material-symbols-outlined text-xl" data-icon="refresh">refresh</span>
+                        Generate Quote
+                    </button>
+<div class="flex gap-2">
+<button class="p-4 rounded-full border border-outline-variant text-on-surface-variant bg-surface-container-lowest hover:bg-surface-variant hover:text-on-surface transition-colors active:scale-95" title="Copy">
+<span class="material-symbols-outlined" data-icon="content_copy">content_copy</span>
+</button>
+<button class="p-4 rounded-full border border-outline-variant text-on-surface-variant bg-surface-container-lowest hover:bg-surface-variant hover:text-on-surface transition-colors active:scale-95" title="Share">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended Tracks (Horizontal Scroll Style) -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-h2 text-h2 text-on-surface">Curated for You</h3>
+<a class="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all" href="#">Explore All <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A serene landscape of a misty morning over a calm lake with soft pastel sky colors. Minimalist composition with a single rowing boat on the water. High-end photography style, airy, ethereal, with soft focus transitions, aligning with the Quantum light mode theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqhVvS2DQcqaiL-9zWtlLO_4M8wXpKk1basrYbfThtSLexzWOlSQRJbdU2UwCWab5-wi2_f_FY_1zoy5mrPO8MtenMLQGFasDZOVAtP3kra3ICwnkLKIscQuvPCOhamlYxWwih90zvSD496GYyURbWwCyYYP1b_5V2AsAGdzoaCdKoZE_qD-6sNE-Iou9oTNFpEtH_2AKaZed_7ssUj_PsOn77bn7xoC1Wrsk5lN6jJSGR-AEfbEmn5cdm8Xdqh85yF7mnJdkFAv33"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span class="text-[10px] font-bold">12m</span>
+</div>
+</div>
+<h4 class="font-h3 text-[18px] text-on-surface">Morning Clarity</h4>
+<p class="text-on-surface-variant font-body-sm">Guided meditation for focus</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Abstract macro shot of white sand dunes under bright sunlight, creating soft shadows and sharp geometric lines. Elegant and minimalist aesthetic, bright light-mode palette of whites and soft beiges. Cohesive with the professional and intellectual atmosphere of the Quantum design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYSMzTq0yqzQ17_6Et0l0roXCE0tqH9lo-dd_vbPSsyLmSp7wxrfyTvlwS688IO0_kCNe67rQzEQpdYY0nmZsQBTGIFfxTVWF11mXf4DOn1A4JIOhJ7nYRMFdvCXR-nrkz5Rpb-h4ZagAcBwC4G4pHcFC6LWUE5aQ1eJjCvLtf2NL1ZavOao5VfWt-m1AQjLxdwE5zq-EjBv9bc3lsw_zIyTfWzCq3jA9EgpRYUn3motXlLGmAt7aUuG1LC1XXBDegwUg7ae1DXXOW"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span class="text-[10px] font-bold">20m</span>
+</div>
+</div>
+<h4 class="font-h3 text-[18px] text-on-surface">Deep Focus Flow</h4>
+<p class="text-on-surface-variant font-body-sm">Ambient soundscape for work</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a glass Prism refracting soft white light into delicate rainbows against a clean white background. High-tech but organic feel, ethereal and artistic. Representing technical precision and cognitive ease, using the Quantum indigo and white palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLs-RzEGJW9Ervw2S25eTa6U5lN-Sr-lkgUCg1_yo_KJrRCfs_VmTdjZEGvUbcb8wBbhFj8f_R_HU-Kc6V6zO8fjm0NeK-Ry-A7vDfddGhRajNSmQZP2Xnsw8_GxfwSlOxdEDdqGzh_M0U6TuadT90LTLyJ4pzbX1bynRpg9fN49IEwd6JZD7RPG8tI_Z94130G48QIuM9ecUpA64oaKJnXzhHYgthgTXtj65pXgUkSRA-wpHLBzPtuCKhubilGm9YHctzZzIqRZTm"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span class="text-[10px] font-bold">15m</span>
+</div>
+</div>
+<h4 class="font-h3 text-[18px] text-on-surface">Stress Release</h4>
+<p class="text-on-surface-variant font-body-sm">Breathing techniques for calm</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist architectural detail of a bright, white spiral staircase viewed from above. Geometric perfection and soft lighting creating a sense of infinite movement. Professional, sophisticated, and calming visual aligned with the 'Modern Minimalism' style guidance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh-7tp8TmLD9gMY_gfpinAciglqtaAFiwq9C4n3vr_u2BGlsHzbb6ac_eXlES_3S_rCstUGIkB79Qd0ingfxCazoutFLz_Q1F9VOuKyjHFqeF0K_6uPEaROW8xKSHAjKj5Izzp5eg4tvqqQ8GZVEdOBL6OY3tckTSh42VbllOc0UHEhX7XHnNTokd3ewazAm8yxqdwkkWo6YsyD8YCRm0udiwHTXGeL6xjLZ-xf630dXfdcA-P0h9nSMv59Lbb55n8O-ogLLsiWpAm"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span class="text-[10px] font-bold">8m</span>
+</div>
+</div>
+<h4 class="font-h3 text-[18px] text-on-surface">Power Reset</h4>
+<p class="text-on-surface-variant font-body-sm">Short break to recharge mind</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Updated) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_-4px_20px_rgba(67,82,165,0.05)] transition-all duration-300 border-none">
+<div class="flex justify-around items-center py-3 px-4">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center bg-primary-container/20 text-primary rounded-xl px-6 py-2 active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</button>
+<!-- Profile (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-6 py-2 hover:bg-secondary-container/30 rounded-xl active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</button>
+</div>
+</nav>
+<!-- Desktop Side Nav (Visible on Desktop) -->
+<div class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-20 flex-col items-center py-8 gap-8 bg-surface/40 backdrop-blur-sm z-40 border-r border-outline-variant/10">
+<button class="w-12 h-12 flex items-center justify-center text-primary bg-primary-container/20 rounded-xl" title="Home">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant rounded-xl transition-colors" title="Insights">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+</button>
+<div class="mt-auto pb-8">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant rounded-xl transition-colors" title="Settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+<script>
+        // Quote generation simulation
+        const quotes = [
+            { text: "The universe is change; our life is what our thoughts make it.", author: "Marcus Aurelius" },
+            { text: "The soul usually knows what to do to heal itself. The challenge is to silence the mind.", author: "Caroline Myss" },
+            { text: "He who has a why to live for can bear almost any how.", author: "Friedrich Nietzsche" },
+            { text: "Within you, there is a stillness and a sanctuary to which you can retreat at any time.", author: "Hermann Hesse" },
+            { text: "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.", author: "Buddha" }
+        ];
+
+        const generateBtn = document.getElementById('generate-btn');
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+
+        if (generateBtn) {
+            generateBtn.addEventListener('click', () => {
+                quoteText.style.opacity = '0';
+                quoteAuthor.style.opacity = '0';
+                
+                setTimeout(() => {
+                    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                    quoteText.textContent = `"${randomQuote.text}"`;
+                    quoteAuthor.textContent = randomQuote.author;
+                    quoteText.style.opacity = '1';
+                    quoteAuthor.style.opacity = '1';
+                }, 300);
+            });
+        }
+
+        // Streak Card Micro-interaction
+        const streakCard = document.querySelector('.streak-pulse');
+        if (streakCard) {
+            const parentCard = streakCard.closest('.glass-card');
+            parentCard.addEventListener('mouseenter', () => {
+                streakCard.style.transform = 'scale(1.1) rotate(5deg)';
+                streakCard.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            parentCard.addEventListener('mouseleave', () => {
+                streakCard.style.transform = 'scale(1) rotate(0deg)';
+            });
+        }
+
+        // Header scroll behavior
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md', 'bg-surface/95');
+                header.classList.remove('bg-surface/80');
+            } else {
+                header.classList.remove('shadow-md', 'bg-surface/95');
+                header.classList.add('bg-surface/80');
+            }
+        });
+    </script>
+</body></html>

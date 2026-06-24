@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYS.QUANTUM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'solar-orange': '#f97316',
+                        'solar-yellow': '#fbbf24',
+                        'solar-pink': '#f43f5e',
+                        'solar-bg': '#ffffff',
+                        'solar-text': '#1f2937',
+                    },
+                    fontFamily: {
+                        'sora': ['Sora', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #ffffff;
+            color: #1f2937;
+            font-family: 'Sora', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: max(884px, 100dvh);
+        }
+
+        .pane {
+            border: 2px solid #f97316;
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.1);
+            position: relative;
+        }
+        
+        .pane-title {
+            position: absolute;
+            top: -14px;
+            left: 16px;
+            background: #ffffff;
+            padding: 0 8px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #f43f5e;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 1em;
+            background-color: #ffffff;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .sys-log {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .terminal-btn {
+            background: transparent;
+            color: #f97316;
+            font-weight: 700;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+        }
+        
+        .terminal-btn:hover, .terminal-btn:active {
+            background-color: #f97316;
+            color: #ffffff;
+        }
+
+        .quote-transition-enter {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+        
+        .quote-transition-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 300ms ease-out;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: -100%;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+        
+        .toast.show {
+            right: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="p-4 gap-4 font-sora antialiased selection:bg-solar-pink selection:text-white">
+<!-- Wrapper -->
+<div class="flex-grow flex flex-col gap-5 relative z-10 w-full max-w-4xl mx-auto h-full">
+<!-- Header -->
+<header class="pane p-5 flex justify-between items-center shrink-0 border-solar-yellow">
+<div class="flex flex-col">
+<div class="font-extrabold text-3xl md:text-4xl gradient-text tracking-tight">SYS.QUANTUM_OS v9.9.9</div>
+<div class="text-sm font-semibold text-solar-orange mt-1 uppercase tracking-wider">&gt; Status: Online | Uplink: Secure</div>
+</div>
+<div class="text-2xl font-bold text-solar-pink animate-pulse hidden sm:block">[###-]</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-col flex-grow gap-5 overflow-hidden mb-4">
+<!-- Top Logs -->
+<div class="pane flex-shrink-0 p-5 h-40 flex flex-col justify-end border-solar-orange/50">
+<span class="pane-title text-solar-orange">System Logs</span>
+<div class="sys-log">&gt; Initializing Cognitive Matrix... <span class="text-solar-pink">[OK]</span></div>
+<div class="sys-log">&gt; Loading Historical_Data.db... <span class="text-solar-pink">[OK]</span></div>
+<div class="sys-log">&gt; Decrypting Philosophy_Node... <span class="text-solar-pink">[OK]</span></div>
+<div class="sys-log">&gt; Streak_Count: <span class="text-solar-orange font-bold">0x07</span> DAYS</div>
+<div class="sys-log">&gt; Buffer: <span class="text-solar-orange font-bold" id="quote-counter">01/50</span></div>
+</div>
+<!-- Quote Area -->
+<div class="pane flex-grow p-6 md:p-10 flex flex-col justify-center items-center text-center relative border-solar-pink border-4" id="quote-container">
+<span class="pane-title text-solar-pink">Main Output</span>
+<div class="w-full text-left mb-6 sys-log opacity-60 text-xs">
+                    DATA_STREAM_START: <br/>
+                    01001101 01100001 01110010 01100011 01110101 01110011
+                </div>
+<p class="text-2xl md:text-5xl lg:text-6xl mb-8 font-extrabold text-solar-text px-4 leading-tight tracking-tight" id="quote-text">
+                    "THE UNIVERSE IS CHANGE; OUR LIFE IS WHAT OUR THOUGHTS MAKE IT."
+                </p>
+<div class="flex items-center gap-4 w-full justify-center">
+<span class="text-solar-yellow font-bold opacity-70">///</span>
+<p class="text-xl md:text-2xl font-bold text-solar-orange tracking-widest uppercase" id="quote-author">MARCUS AURELIUS</p>
+<span class="text-solar-yellow font-bold opacity-70">///</span>
+</div>
+<div class="w-full text-right mt-6 sys-log opacity-60 text-xs">
+                    DATA_STREAM_END. <br/>
+                    CHECKSUM: VALID.
+                </div>
+</div>
+<!-- Command Prompt -->
+<div class="flex-shrink-0 h-24 flex flex-col justify-center">
+<button class="bg-gradient-to-r from-solar-orange to-solar-pink text-white rounded-xl p-4 md:p-6 text-xl md:text-2xl font-bold shadow-[0_10px_30px_rgba(244,63,94,0.4)] transition-transform hover:scale-[1.02] active:scale-[0.98] w-full flex items-center justify-center gap-3 group" id="generate-btn">
+<span>GENERATE_NEW_STREAM</span>
+<span class="cursor"></span>
+</button>
+</div>
+<!-- Bottom Tools -->
+<div class="pane flex-shrink-0 p-3 flex justify-between items-center text-sm md:text-base border-solar-yellow/50">
+<button class="terminal-btn px-4 py-2" id="copy-btn">COPY DATA</button>
+<button class="terminal-btn px-4 py-2">SHARE X</button>
+<button class="terminal-btn px-4 py-2">SHARE WA</button>
+<button class="terminal-btn px-4 py-2 opacity-40 cursor-not-allowed">SYS CONF</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="toast pane !border-solar-pink p-4 shadow-[0_10px_25px_rgba(244,63,94,0.2)] flex items-center gap-3 rounded-xl" id="toast">
+<span class="text-2xl text-solar-orange font-bold">&gt;</span>
+<span class="text-base font-bold text-solar-text uppercase">Data copied to clipboard.</span>
+</div>
+<script>
+        const quotes = [
+            { text: "The universe is change; our life is what our thoughts make it.", author: "Marcus Aurelius" },
+            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "You have power over your mind - not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
+            { text: "Continuous effort - not strength or intelligence - is the key to unlocking our potential.", author: "Winston Churchill" },
+            { text: "The obstacle in the path becomes the path. Never forget, within every obstacle is an opportunity to improve our condition.", author: "Ryan Holiday" },
+            { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+            { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" }
+        ];
+
+        let seenIndices = new Set();
+        let currentQuoteIndex = 1;
+
+        const quoteContainer = document.getElementById('quote-container');
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+        const generateBtn = document.getElementById('generate-btn');
+        const counterText = document.getElementById('quote-counter');
+        const copyBtn = document.getElementById('copy-btn');
+        const toast = document.getElementById('toast');
+
+        function getRandomIndex() {
+            if (seenIndices.size >= quotes.length) {
+                seenIndices.clear();
+            }
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * quotes.length);
+            } while (seenIndices.has(idx));
+            seenIndices.add(idx);
+            return idx;
+        }
+
+        function generateQuote() {
+            quoteContainer.classList.remove('quote-transition-enter-active');
+            quoteContainer.classList.add('quote-transition-enter');
+            
+            const logs = document.querySelectorAll('.sys-log');
+            logs.forEach(log => {
+                log.style.opacity = '0.3';
+                setTimeout(() => log.style.opacity = '0.8', 150);
+                setTimeout(() => log.style.opacity = '0.4', 300);
+                setTimeout(() => log.style.opacity = '0.6', 450);
+            });
+
+            setTimeout(() => {
+                const idx = getRandomIndex();
+                const quote = quotes[idx];
+                
+                quoteText.textContent = `"${quote.text.toUpperCase()}"`;
+                quoteAuthor.textContent = quote.author.toUpperCase();
+                
+                currentQuoteIndex = Math.min(50, seenIndices.size);
+                counterText.textContent = `${currentQuoteIndex.toString().padStart(2, '0')}/50`;
+
+                requestAnimationFrame(() => {
+                    quoteContainer.classList.remove('quote-transition-enter');
+                    quoteContainer.classList.add('quote-transition-enter-active');
+                });
+            }, 300);
+        }
+
+        generateBtn.addEventListener('click', generateQuote);
+
+        copyBtn.addEventListener('click', async () => {
+            const textToCopy = `${quoteText.textContent} - ${quoteAuthor.textContent}`;
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+        });
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        seenIndices.add(0);
+        quoteContainer.classList.add('quote-transition-enter-active');
+    </script>
+</body></html>

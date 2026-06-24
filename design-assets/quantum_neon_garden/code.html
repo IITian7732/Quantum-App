@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neon Garden</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-emerald': '#10b981',
+                        'neon-teal': '#14b8a6',
+                        'neon-orchid': '#d946ef',
+                        'mint-white': '#f2fbf9',
+                    },
+                    fontFamily: {
+                        'sans': ['Outfit', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f2fbf9;
+            color: #1e293b;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: max(884px, 100dvh);
+        }
+
+        .pane {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            box-shadow: 0 10px 40px -10px rgba(20, 184, 166, 0.15);
+            border-radius: 2rem;
+            position: relative;
+        }
+
+        .quote-transition-enter {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .quote-transition-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 400ms ease-out, transform 400ms ease-out;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 100;
+        }
+        
+        .toast.show {
+            bottom: 40px;
+        }
+
+        /* Subtle animated gradient background for the body */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.05) 0%, rgba(217, 70, 239, 0.03) 50%, transparent 100%);
+            animation: rotateBG 30s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes rotateBG {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-6 gap-4 antialiased selection:bg-neon-teal selection:text-white">
+<!-- Wrapper -->
+<div class="flex-grow flex flex-col gap-5 relative z-10 w-full max-w-4xl mx-auto h-full">
+<!-- Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0 px-2 mt-4">
+<div class="flex flex-col">
+<div class="font-bold text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-neon-teal to-neon-orchid tracking-tight">SYS.QUANTUM_OS <span class="text-xl text-neon-emerald font-mono">v9.9.9</span></div>
+</div>
+<div class="flex gap-2 text-xs font-bold tracking-wider">
+<span class="bg-neon-emerald/10 text-neon-emerald border border-neon-emerald/20 px-4 py-2 rounded-full shadow-sm">STATUS: ONLINE</span>
+<span class="bg-neon-teal/10 text-neon-teal border border-neon-teal/20 px-4 py-2 rounded-full shadow-sm">UPLINK: SECURE</span>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-col flex-grow gap-5 overflow-hidden mb-4">
+<!-- Top Logs -->
+<div class="pane flex-shrink-0 p-6 flex flex-col gap-2">
+<div class="flex justify-between items-center mb-2">
+<span class="bg-neon-orchid/10 text-neon-orchid px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-neon-orchid/20">System Logs</span>
+<span class="text-neon-teal font-mono text-sm font-semibold bg-neon-teal/10 px-3 py-1 rounded-full">BUFFER: <span id="quote-counter">01/50</span></span>
+</div>
+<div class="font-mono text-sm text-slate-500 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-neon-emerald"></span> INITIALIZING COGNITIVE MATRIX... <span class="text-neon-emerald ml-auto">[OK]</span></div>
+<div class="font-mono text-sm text-slate-500 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-neon-emerald"></span> LOADING HISTORICAL_DATA.DB... <span class="text-neon-emerald ml-auto">[OK]</span></div>
+<div class="font-mono text-sm text-slate-500 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-neon-emerald"></span> DECRYPTING PHILOSOPHY_NODE... <span class="text-neon-emerald ml-auto">[OK]</span></div>
+<div class="font-mono text-sm text-slate-500 flex items-center gap-2 mt-1 pt-2 border-t border-slate-100"><span class="text-neon-orchid">◎</span> STREAK_COUNT: <span class="text-slate-800 font-bold ml-1">0x07 DAYS</span></div>
+</div>
+<!-- Quote Area -->
+<div class="pane flex-grow p-8 md:p-12 flex flex-col justify-center items-center text-center relative overflow-hidden" id="quote-container">
+<span class="absolute top-6 left-6 bg-neon-teal/10 text-neon-teal px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-neon-teal/20">Main Output</span>
+<div class="w-full text-left mb-8 font-mono text-xs text-neon-teal/40">
+                    DATA_STREAM_START: <br/>
+                    01001101 01100001 01110010 01100011 01110101 01110011
+                </div>
+<p class="text-3xl md:text-5xl mb-8 text-slate-800 font-bold leading-tight" id="quote-text">
+                    "The universe is change; our life is what our thoughts make it."
+                </p>
+<div class="flex items-center gap-4 w-full justify-center">
+<div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-neon-orchid/50"></div>
+<p class="text-xl md:text-2xl text-neon-orchid font-semibold tracking-wide uppercase" id="quote-author">MARCUS AURELIUS</p>
+<div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-neon-orchid/50"></div>
+</div>
+<div class="w-full text-right mt-10 font-mono text-xs text-neon-teal/40">
+                    DATA_STREAM_END. <br/>
+                    CHECKSUM: VALID.
+                </div>
+</div>
+<!-- Command Prompt -->
+<div class="flex-shrink-0">
+<button class="w-full bg-gradient-to-r from-neon-teal to-neon-emerald p-1 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] transition-all active:scale-[0.98] group" id="generate-btn">
+<div class="bg-white/10 backdrop-blur-sm rounded-full py-4 px-6 flex items-center justify-center gap-3">
+<span class="text-white font-mono font-bold text-lg md:text-xl">root@quantum:~$ ./fetch_quote.sh</span>
+<span class="inline-block w-3 h-5 bg-white animate-pulse"></span>
+</div>
+</button>
+</div>
+<!-- Bottom Tools -->
+<div class="flex-shrink-0 p-2 flex flex-wrap justify-center md:justify-between items-center gap-3">
+<button class="bg-white/80 backdrop-blur-sm border border-neon-teal/20 text-slate-600 hover:text-neon-teal hover:border-neon-teal shadow-sm px-6 py-2 rounded-full font-semibold transition-all text-sm uppercase tracking-wide" id="copy-btn">Copy</button>
+<div class="flex gap-3">
+<button class="bg-white/80 backdrop-blur-sm border border-neon-teal/20 text-slate-600 hover:text-neon-teal hover:border-neon-teal shadow-sm px-6 py-2 rounded-full font-semibold transition-all text-sm uppercase tracking-wide">Share X</button>
+<button class="bg-white/80 backdrop-blur-sm border border-neon-teal/20 text-slate-600 hover:text-neon-teal hover:border-neon-teal shadow-sm px-6 py-2 rounded-full font-semibold transition-all text-sm uppercase tracking-wide">Share WA</button>
+</div>
+<button class="bg-slate-100 border border-slate-200 text-slate-400 px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wide cursor-not-allowed hidden md:block">SYS</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="toast bg-white border border-neon-emerald border-l-4 shadow-xl shadow-neon-emerald/20 rounded-full py-3 px-6 flex items-center gap-3" id="toast">
+<span class="w-6 h-6 rounded-full bg-neon-emerald/20 flex items-center justify-center text-neon-emerald font-bold text-sm">✓</span>
+<span class="text-slate-700 font-semibold text-sm tracking-wide">DATA COPIED TO CLIPBOARD.</span>
+</div>
+<script>
+        const quotes = [
+            { text: "The universe is change; our life is what our thoughts make it.", author: "Marcus Aurelius" },
+            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "You have power over your mind - not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
+            { text: "Continuous effort - not strength or intelligence - is the key to unlocking our potential.", author: "Winston Churchill" },
+            { text: "The obstacle in the path becomes the path. Never forget, within every obstacle is an opportunity to improve our condition.", author: "Ryan Holiday" },
+            { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+            { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" }
+        ];
+
+        let seenIndices = new Set();
+        let currentQuoteIndex = 1;
+
+        const quoteContainer = document.getElementById('quote-container');
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+        const generateBtn = document.getElementById('generate-btn');
+        const counterText = document.getElementById('quote-counter');
+        const copyBtn = document.getElementById('copy-btn');
+        const toast = document.getElementById('toast');
+
+        function getRandomIndex() {
+            if (seenIndices.size >= quotes.length) {
+                seenIndices.clear();
+            }
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * quotes.length);
+            } while (seenIndices.has(idx));
+            seenIndices.add(idx);
+            return idx;
+        }
+
+        function generateQuote() {
+            quoteContainer.classList.remove('quote-transition-enter-active');
+            quoteContainer.classList.add('quote-transition-enter');
+            
+            setTimeout(() => {
+                const idx = getRandomIndex();
+                const quote = quotes[idx];
+                
+                quoteText.textContent = `"${quote.text}"`;
+                quoteAuthor.textContent = quote.author;
+                
+                currentQuoteIndex = Math.min(50, seenIndices.size);
+                counterText.textContent = `${currentQuoteIndex.toString().padStart(2, '0')}/50`;
+
+                requestAnimationFrame(() => {
+                    quoteContainer.classList.remove('quote-transition-enter');
+                    quoteContainer.classList.add('quote-transition-enter-active');
+                });
+            }, 300);
+        }
+
+        generateBtn.addEventListener('click', generateQuote);
+
+        copyBtn.addEventListener('click', async () => {
+            const textToCopy = `${quoteText.textContent} - ${quoteAuthor.textContent}`;
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+        });
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        seenIndices.add(0);
+        quoteContainer.classList.add('quote-transition-enter-active');
+    </script>
+</body></html>

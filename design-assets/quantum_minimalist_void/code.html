@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quantum - Success Quotes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "fontFamily": {
+                      "serif": ["Playfair Display", "serif"],
+                      "mono": ["JetBrains Mono", "monospace"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: max(884px, 100dvh);
+        }
+        
+        .quote-transition-enter {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .quote-transition-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 150ms linear, transform 150ms linear;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            opacity: 0;
+            transition: all 0.2s linear;
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-mono bg-black text-white overflow-hidden antialiased selection:bg-white selection:text-black">
+<header class="fixed top-0 w-full flex items-start justify-between p-4 md:p-8 z-50 pointer-events-none mix-blend-difference">
+<div class="flex flex-col gap-1 pointer-events-auto">
+<span class="text-xs font-bold uppercase tracking-widest border border-white px-2 py-1">Quantum</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col justify-end p-4 md:p-12 w-full h-full pb-32 relative z-10 overflow-visible">
+<div class="w-full flex flex-col justify-end quote-transition-enter-active" id="quote-container">
+<p class="font-serif text-[18vw] md:text-[14vw] leading-[0.8] tracking-tighter text-white break-words w-[150%] -ml-[5%] md:-ml-[10%]" id="quote-text">
+                    "The universe is change; our life is what our thoughts make it."
+                </p>
+<div class="mt-12 flex flex-wrap gap-4 items-center font-mono text-xs uppercase tracking-widest text-white/70 border-t border-white pt-6 w-full max-w-full">
+<span class="text-white font-bold" id="quote-author">Marcus Aurelius</span>
+<span>•</span>
+<span>7 Day Streak</span>
+<span>•</span>
+<span id="quote-counter">Quote 1 of 50</span>
+</div>
+</div>
+</main>
+<div class="fixed bottom-6 left-4 md:left-12 flex gap-4 z-50 font-mono text-xs uppercase">
+<button class="border border-white px-4 py-2 hover:bg-white hover:text-black transition-colors" id="copy-btn">Copy</button>
+</div>
+<button aria-label="Generate Quote" class="fixed bottom-6 right-6 md:right-12 w-8 h-8 md:w-10 md:h-10 bg-white rounded-full hover:scale-90 transition-transform z-50 cursor-pointer" id="generate-btn">
+</button>
+<div class="toast bg-white text-black font-mono text-xs uppercase tracking-widest px-6 py-3 border border-black z-50" id="toast">
+        Copied
+    </div>
+<script>
+        const quotes = [
+            { text: "The universe is change; our life is what our thoughts make it.", author: "Marcus Aurelius" },
+            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "You have power over your mind - not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
+            { text: "Continuous effort - not strength or intelligence - is the key to unlocking our potential.", author: "Winston Churchill" },
+            { text: "The obstacle in the path becomes the path. Never forget, within every obstacle is an opportunity to improve our condition.", author: "Ryan Holiday" },
+            { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+            { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" }
+        ];
+
+        let seenIndices = new Set();
+        let currentQuoteIndex = 0;
+
+        const quoteContainer = document.getElementById('quote-container');
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+        const generateBtn = document.getElementById('generate-btn');
+        const counterText = document.getElementById('quote-counter');
+        const copyBtn = document.getElementById('copy-btn');
+        const toast = document.getElementById('toast');
+
+        function getRandomIndex() {
+            if (seenIndices.size >= quotes.length) {
+                seenIndices.clear();
+            }
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * quotes.length);
+            } while (seenIndices.has(idx));
+            seenIndices.add(idx);
+            return idx;
+        }
+
+        function generateQuote() {
+            quoteContainer.classList.remove('quote-transition-enter-active');
+            quoteContainer.classList.add('quote-transition-enter');
+
+            setTimeout(() => {
+                const idx = getRandomIndex();
+                const quote = quotes[idx];
+                
+                quoteText.textContent = `"${quote.text}"`;
+                quoteAuthor.textContent = quote.author;
+                
+                currentQuoteIndex = Math.min(50, seenIndices.size);
+                counterText.textContent = `Quote ${currentQuoteIndex} of 50`;
+
+                requestAnimationFrame(() => {
+                    quoteContainer.classList.remove('quote-transition-enter');
+                    quoteContainer.classList.add('quote-transition-enter-active');
+                });
+            }, 150);
+        }
+
+        generateBtn.addEventListener('click', generateQuote);
+
+        copyBtn.addEventListener('click', async () => {
+            const textToCopy = `${quoteText.textContent} - ${quoteAuthor.textContent}`;
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+        });
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        seenIndices.add(0);
+    </script>
+</body></html>

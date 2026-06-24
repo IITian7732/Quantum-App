@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Retro Sunset // Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sunset-magenta': '#db2777',
+                        'sunset-purple': '#7e22ce',
+                        'sunset-orange': '#f59e0b',
+                        'sunset-bg': '#fff8f0',
+                        'sunset-surface': '#ffffff',
+                    },
+                    fontFamily: {
+                        'sora': ['Sora', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fff8f0;
+            background-image: radial-gradient(at 0% 0%, hsla(320,80%,80%,0.2) 0px, transparent 50%),
+                              radial-gradient(at 100% 0%, hsla(38,90%,70%,0.2) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, hsla(270,70%,80%,0.2) 0px, transparent 50%);
+            color: #4c1d95;
+            font-family: 'Sora', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: max(884px, 100dvh);
+        }
+
+        .pane {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 40px -10px rgba(126, 34, 206, 0.1);
+            position: relative;
+        }
+        
+        .pane-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #db2777;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #db2777, #7e22ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sys-log {
+            font-size: 0.9rem;
+            color: #7e22ce;
+            opacity: 0.7;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        
+        .editorial-btn {
+            background: transparent;
+            color: #db2777;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .editorial-btn:hover, .editorial-btn:active {
+            background-color: #fce7f3;
+            color: #db2777;
+            transform: translateY(-1px);
+        }
+
+        .quote-transition-enter {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .quote-transition-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 400ms ease-out;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: -100%;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+        }
+        
+        .toast.show {
+            right: 20px;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-6 gap-4 font-sora antialiased selection:bg-sunset-magenta selection:text-white">
+<!-- Wrapper -->
+<div class="flex-grow flex flex-col gap-6 relative z-10 w-full max-w-4xl mx-auto h-full">
+<!-- Header -->
+<header class="pane p-5 flex justify-between items-center shrink-0">
+<div class="flex flex-col">
+<div class="font-bold text-2xl md:text-3xl gradient-text tracking-tight">RETRO.SUNSET // EDITORIAL</div>
+<div class="text-sm font-semibold opacity-60 mt-1 uppercase tracking-widest text-sunset-purple">Issue 01 // Daily Inspiration</div>
+</div>
+<div class="text-sunset-orange text-2xl font-bold">
+            ✦
+        </div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-col flex-grow gap-6 overflow-hidden mb-2">
+<!-- Top Info -->
+<div class="pane flex-shrink-0 p-5 h-32 flex flex-col justify-center">
+<span class="pane-title">Daily Status</span>
+<div class="flex justify-between items-end">
+<div>
+<div class="sys-log">Curating thoughts...</div>
+<div class="sys-log">Finding clarity...</div>
+</div>
+<div class="text-right">
+<div class="text-sm font-bold text-sunset-purple uppercase opacity-50">Collection</div>
+<div class="text-2xl font-bold text-sunset-magenta" id="quote-counter">01/50</div>
+</div>
+</div>
+</div>
+<!-- Quote Area -->
+<div class="pane flex-grow p-8 md:p-12 flex flex-col justify-center items-center text-center relative" id="quote-container">
+<div class="absolute top-6 left-6 text-6xl text-sunset-orange opacity-20 font-playfair">"</div>
+<div class="absolute bottom-6 right-6 text-6xl text-sunset-magenta opacity-20 font-playfair leading-none rotate-180">"</div>
+<span class="pane-title mb-8">Featured Perspective</span>
+<p class="font-playfair text-3xl md:text-5xl lg:text-6xl mb-10 text-sunset-purple font-medium leading-tight" id="quote-text">
+                "THE UNIVERSE IS CHANGE; OUR LIFE IS WHAT OUR THOUGHTS MAKE IT."
+            </p>
+<div class="flex items-center gap-4 w-full justify-center">
+<div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-sunset-magenta"></div>
+<p class="text-xl md:text-2xl font-bold text-sunset-magenta tracking-wide uppercase" id="quote-author">MARCUS AURELIUS</p>
+<div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-sunset-magenta"></div>
+</div>
+</div>
+<!-- Command Prompt -->
+<div class="flex-shrink-0 flex flex-col justify-center">
+<button class="bg-gradient-to-r from-sunset-magenta to-sunset-orange hover:from-pink-600 hover:to-amber-500 text-white shadow-lg shadow-pink-500/30 flex justify-center items-center gap-3 text-xl font-bold p-5 w-full rounded-2xl transition-all hover:scale-[1.01] active:scale-[0.99]" id="generate-btn">
+<span>DISCOVER NEW INSIGHT</span>
+<span class="text-2xl">→</span>
+</button>
+</div>
+<!-- Bottom Tools -->
+<div class="pane flex-shrink-0 p-3 flex justify-between items-center text-sm md:text-base">
+<button class="editorial-btn px-4 py-2" id="copy-btn">COPY QUOTE</button>
+<div class="flex gap-2">
+<button class="editorial-btn px-4 py-2">SHARE X</button>
+<button class="editorial-btn px-4 py-2">SHARE IG</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="toast pane p-4 bg-white border-l-4 border-sunset-magenta shadow-xl flex items-center gap-3" id="toast">
+<span class="text-sunset-magenta font-bold text-xl">✓</span>
+<span class="text-sunset-purple font-semibold">Insight copied to clipboard.</span>
+</div>
+<script>
+    const quotes = [
+        { text: "The universe is change; our life is what our thoughts make it.", author: "Marcus Aurelius" },
+        { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+        { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+        { text: "You have power over your mind - not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
+        { text: "Continuous effort - not strength or intelligence - is the key to unlocking our potential.", author: "Winston Churchill" },
+        { text: "The obstacle in the path becomes the path. Never forget, within every obstacle is an opportunity to improve our condition.", author: "Ryan Holiday" },
+        { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+        { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein" },
+        { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" }
+    ];
+
+    let seenIndices = new Set();
+    let currentQuoteIndex = 1;
+
+    const quoteContainer = document.getElementById('quote-container');
+    const quoteText = document.getElementById('quote-text');
+    const quoteAuthor = document.getElementById('quote-author');
+    const generateBtn = document.getElementById('generate-btn');
+    const counterText = document.getElementById('quote-counter');
+    const copyBtn = document.getElementById('copy-btn');
+    const toast = document.getElementById('toast');
+
+    function getRandomIndex() {
+        if (seenIndices.size >= quotes.length) {
+            seenIndices.clear();
+        }
+        let idx;
+        do {
+            idx = Math.floor(Math.random() * quotes.length);
+        } while (seenIndices.has(idx));
+        seenIndices.add(idx);
+        return idx;
+    }
+
+    function generateQuote() {
+        quoteContainer.classList.remove('quote-transition-enter-active');
+        quoteContainer.classList.add('quote-transition-enter');
+        
+        // Subtle fade effect on logs instead of glitch
+        const logs = document.querySelectorAll('.sys-log');
+        logs.forEach(log => {
+            log.style.opacity = '0.3';
+            setTimeout(() => log.style.opacity = '0.7', 200);
+        });
+
+        setTimeout(() => {
+            const idx = getRandomIndex();
+            const quote = quotes[idx];
+            
+            quoteText.textContent = `"${quote.text.toUpperCase()}"`;
+            quoteAuthor.textContent = quote.author.toUpperCase();
+            
+            currentQuoteIndex = Math.min(50, seenIndices.size);
+            counterText.textContent = `${currentQuoteIndex.toString().padStart(2, '0')}/50`;
+
+            requestAnimationFrame(() => {
+                quoteContainer.classList.remove('quote-transition-enter');
+                quoteContainer.classList.add('quote-transition-enter-active');
+            });
+        }, 300);
+    }
+
+    generateBtn.addEventListener('click', generateQuote);
+
+    copyBtn.addEventListener('click', async () => {
+        const textToCopy = `${quoteText.textContent} - ${quoteAuthor.textContent}`;
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+            showToast();
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    });
+
+    function showToast() {
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    }
+
+    seenIndices.add(0);
+    quoteContainer.classList.add('quote-transition-enter-active');
+</script>
+</body></html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quantum - Success Quotes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#6d3bd7",
+                      "secondary-fixed-dim": "#4cd7f6",
+                      "on-secondary-fixed": "#001f26",
+                      "primary-fixed-dim": "#d0bcff",
+                      "surface-variant": "#f4f1f8",
+                      "surface-bright": "#fdfcff",
+                      "error": "#ffb4ab",
+                      "surface-dim": "#ded8e1",
+                      "surface": "#fdfcff",
+                      "surface-tint": "#d0bcff",
+                      "tertiary-fixed": "#ffdf9f",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-primary": "#3c0091",
+                      "primary-container": "#a078ff",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-container": "#372700",
+                      "tertiary-container": "#b88900",
+                      "on-error": "#690005",
+                      "on-primary-container": "#340080",
+                      "tertiary": "#f9bd22",
+                      "tertiary-fixed-dim": "#f9bd22",
+                      "secondary-fixed": "#acedff",
+                      "secondary-container": "#03b5d3",
+                      "on-surface-variant": "#49454f",
+                      "on-secondary": "#003640",
+                      "surface-container": "#f3edf7",
+                      "surface-container-high": "#ece6f0",
+                      "on-secondary-container": "#00424e",
+                      "on-tertiary-fixed": "#261a00",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e6e0e9",
+                      "inverse-surface": "#313033",
+                      "primary": "#6750a4",
+                      "on-surface": "#1c1b1f",
+                      "on-secondary-fixed-variant": "#004e5c",
+                      "outline": "#79747e",
+                      "inverse-on-surface": "#f4eff4",
+                      "on-tertiary": "#402d00",
+                      "primary-fixed": "#eaddff",
+                      "background": "#fdfcff",
+                      "on-primary-fixed-variant": "#4f378b",
+                      "surface-container-low": "#f7f2fa",
+                      "outline-variant": "#cac4d0",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#21005d",
+                      "secondary": "#625b71",
+                      "on-background": "#1c1b1f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "unit": "4px",
+                      "container-max": "1280px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Outfit"],
+                      "headline-lg-mobile": ["Outfit"],
+                      "body-md": ["Outfit"],
+                      "headline-xl": ["Outfit"],
+                      "body-lg": ["Outfit"],
+                      "headline-lg": ["Outfit"],
+                      "label-sm": ["Outfit"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "300"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "200"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "300"}],
+                      "headline-xl": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "200"}],
+                      "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "300"}],
+                      "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "200"}],
+                      "label-sm": ["13px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background: linear-gradient(135deg, #fffcf9 0%, #fdecf2 50%, #e6f7ff 100%);
+            color: #4a4a5a;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .ethereal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(255, 230, 240, 0.6), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(230, 245, 255, 0.6), transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(255, 245, 230, 0.6), transparent 50%);
+            filter: blur(40px);
+            animation: pulse-bg 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .blob-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            z-index: 0;
+            opacity: 0.7;
+            filter: drop-shadow(0 20px 40px rgba(200, 180, 220, 0.2));
+            animation: morph 8s ease-in-out infinite;
+            fill: url(#gradient);
+        }
+
+        @keyframes morph {
+            0%, 100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+        }
+
+        .droplet-btn {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            box-shadow: 
+                0 8px 32px 0 rgba(31, 38, 135, 0.05),
+                inset 0 2px 5px rgba(255,255,255,0.8);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .droplet-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 12px 40px 0 rgba(31, 38, 135, 0.08),
+                inset 0 2px 5px rgba(255,255,255,0.9);
+        }
+
+        .icon-droplet {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .icon-droplet:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(1.1);
+        }
+
+        .liquid-text {
+            background: linear-gradient(to right, #7a6b9e, #5a8ba8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .quote-transition-enter {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+        }
+        
+        .quote-transition-enter-active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+            transition: opacity 800ms ease, filter 800ms ease, transform 800ms ease;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px) scale(0.9);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .abstract-icon {
+            stroke: #666;
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md overflow-hidden antialiased selection:bg-pink-100 selection:text-pink-900">
+<div class="ethereal-bg"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-transparent flex items-center justify-between px-margin-mobile md:px-margin-desktop h-24 z-50 transition-all">
+<div class="flex items-center gap-3">
+<svg class="w-8 h-8 abstract-icon" style="stroke: #a090c0;" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8" stroke-dasharray="2 4"></circle>
+<path d="M12 4 v16 M4 12 h16" opacity="0.5"></path>
+</svg>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-md tracking-[0.2em] font-light text-[#5a5a6a]">QUANTUM</h1>
+</div>
+</div>
+<button class="icon-droplet w-10 h-10 text-[#7a7a8a]">
+<svg class="w-5 h-5 abstract-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M12 4 a8 8 0 0 1 8 8 a8 8 0 0 1 -8 8 a8 8 0 0 1 -8 -8 a8 8 0 0 1 8 -8" stroke-dasharray="4 4"></path>
+</svg>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-32 w-full max-w-container-max mx-auto relative z-10">
+<!-- Status Tags Container -->
+<div class="flex gap-6 mb-12 w-full max-w-2xl justify-center opacity-70">
+<div class="inline-flex items-center gap-2 px-5 py-2 droplet-btn">
+<svg class="w-4 h-4 abstract-icon" style="stroke: #e090b0;" viewbox="0 0 24 24">
+<path d="M12 21 a9 9 0 0 0 9 -9 a9 9 0 0 0 -9 -9 a9 9 0 0 0 -9 9 a9 9 0 0 0 9 9"></path>
+<path d="M12 12 l3 -3 M12 12 l-3 3"></path>
+</svg>
+<span class="font-label-sm text-label-sm text-[#8a7a9a]">7 DAY FLOW</span>
+</div>
+<div class="inline-flex items-center gap-2 px-5 py-2 droplet-btn">
+<svg class="w-4 h-4 abstract-icon" style="stroke: #90b0e0;" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="6"></circle>
+<circle cx="12" cy="12" r="2"></circle>
+</svg>
+<span class="font-label-sm text-label-sm text-[#8a7a9a]" id="quote-counter">1 / 50</span>
+</div>
+</div>
+<!-- The Quote Area -->
+<div class="blob-container my-8 p-8 md:p-16">
+<svg class="blob" viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="gradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="rgba(255, 255, 255, 0.9)"></stop>
+<stop offset="50%" stop-color="rgba(250, 240, 245, 0.7)"></stop>
+<stop offset="100%" stop-color="rgba(240, 248, 255, 0.8)"></stop>
+</lineargradient>
+</defs>
+<path d="M42.9,-73.4C55.4,-67.2,65.3,-55.1,73.1,-41.8C80.9,-28.5,86.6,-14.2,85.2,-0.8C83.8,12.6,75.3,25.2,66.1,36.5C56.9,47.8,47,57.8,34.8,64.8C22.6,71.8,8.1,75.8,-5.5,75.2C-19.1,74.6,-31.8,69.4,-43.3,61.8C-54.8,54.2,-65.1,44.2,-72.1,32.1C-79.1,20,-82.8,5.8,-81.4,-7.8C-80,-21.4,-73.5,-34.4,-64.3,-44.6C-55.1,-54.8,-43.2,-62.2,-31,-68.2C-18.8,-74.2,-6.3,-78.8,7.1,-82.8C20.5,-86.8,40.9,-90.1,42.9,-73.4Z" transform="translate(100 100)"></path>
+</svg>
+<div class="z-10 relative flex flex-col items-center gap-10 w-full text-center" id="quote-container">
+<p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-[#5a5a6a] max-w-[80%] leading-relaxed font-light" id="quote-text">
+            "The universe is change; our life is what our thoughts make it."
+        </p>
+<div class="flex items-center gap-4 opacity-60">
+<div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#a090c0] to-transparent"></div>
+<p class="font-body-lg text-body-lg text-[#8a7a9a] font-light tracking-[0.1em] uppercase text-sm" id="quote-author">
+                Marcus Aurelius
+            </p>
+<div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#a090c0] to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-8 flex flex-col items-center gap-10 w-full max-w-md z-10">
+<button class="droplet-btn w-full py-5 px-8 rounded-full font-body-lg text-body-lg text-[#6a5a7a] font-light tracking-[0.15em] uppercase flex items-center justify-center gap-4 relative overflow-hidden group" id="generate-btn">
+<span class="relative z-10 flex items-center gap-3">
+<svg class="w-5 h-5 abstract-icon" viewbox="0 0 24 24">
+<path d="M12 2 v20 M2 12 h20 M5 5 l14 14 M19 5 l-14 14" opacity="0.6"></path>
+<circle cx="12" cy="12" r="4"></circle>
+</svg>
+                    Manifest
+                </span>
+</button>
+<div class="flex gap-8 justify-center items-center">
+<button aria-label="Copy Quote" class="icon-droplet group relative" id="copy-btn">
+<svg class="w-5 h-5 abstract-icon" viewbox="0 0 24 24">
+<rect height="12" rx="2" width="12" x="8" y="8"></rect>
+<path d="M16 8 V6 a2 2 0 0 0 -2 -2 H6 a2 2 0 0 0 -2 2 v8 a2 2 0 0 0 2 2 h2"></path>
+</svg>
+</button>
+<button aria-label="Share" class="icon-droplet group relative">
+<svg class="w-5 h-5 abstract-icon" viewbox="0 0 24 24">
+<circle cx="18" cy="5" r="3"></circle>
+<circle cx="6" cy="12" r="3"></circle>
+<circle cx="18" cy="19" r="3"></circle>
+<line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+<line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+</svg>
+</button>
+<button aria-label="Save" class="icon-droplet group relative">
+<svg class="w-5 h-5 abstract-icon" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar for Mobile (Visible md:hidden) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm rounded-full droplet-btn z-50 flex md:hidden justify-around items-center px-6 py-4">
+<a class="flex flex-col items-center justify-center text-[#8a7a9a] transition-all duration-300" href="#">
+<svg class="w-6 h-6 abstract-icon" style="stroke: #a090c0; stroke-width: 2;" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="6"></circle>
+</svg>
+</a>
+<a class="flex flex-col items-center justify-center text-[#b0a0c0] hover:text-[#8a7a9a] transition-colors" href="#">
+<svg class="w-6 h-6 abstract-icon" viewbox="0 0 24 24">
+<path d="M4 6 h16 M4 12 h16 M4 18 h16"></path>
+</svg>
+</a>
+<a class="flex flex-col items-center justify-center text-[#b0a0c0] hover:text-[#8a7a9a] transition-colors" href="#">
+<svg class="w-6 h-6 abstract-icon" viewbox="0 0 24 24">
+<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</a>
+</nav>
+<!-- Toast Notification -->
+<div class="toast text-[#6a5a7a] px-8 py-4 rounded-full flex items-center gap-4 z-50" id="toast">
+<svg class="w-5 h-5 abstract-icon" style="stroke: #80c0a0;" viewbox="0 0 24 24">
+<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+<polyline points="22 4 12 14.01 9 11.01"></polyline>
+</svg>
+<span class="font-label-sm font-light tracking-widest uppercase">Essence Captured</span>
+</div>
+<!-- Application Logic -->
+<script>
+        const quotes = [
+            { text: "The universe is change; our life is what our thoughts make it.", author: "Marcus Aurelius" },
+            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "You have power over your mind - not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
+            { text: "Continuous effort - not strength or intelligence - is the key to unlocking our potential.", author: "Winston Churchill" },
+            { text: "The obstacle in the path becomes the path. Never forget, within every obstacle is an opportunity to improve our condition.", author: "Ryan Holiday" },
+            { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+            { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" }
+        ];
+
+        let seenIndices = new Set();
+        let currentQuoteIndex = 0; // Simulated total count for UI
+
+        const quoteContainer = document.getElementById('quote-container');
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+        const generateBtn = document.getElementById('generate-btn');
+        const counterText = document.getElementById('quote-counter');
+        const copyBtn = document.getElementById('copy-btn');
+        const toast = document.getElementById('toast');
+
+        // SVG Path animation helper
+        const blobPaths = [
+            "M42.9,-73.4C55.4,-67.2,65.3,-55.1,73.1,-41.8C80.9,-28.5,86.6,-14.2,85.2,-0.8C83.8,12.6,75.3,25.2,66.1,36.5C56.9,47.8,47,57.8,34.8,64.8C22.6,71.8,8.1,75.8,-5.5,75.2C-19.1,74.6,-31.8,69.4,-43.3,61.8C-54.8,54.2,-65.1,44.2,-72.1,32.1C-79.1,20,-82.8,5.8,-81.4,-7.8C-80,-21.4,-73.5,-34.4,-64.3,-44.6C-55.1,-54.8,-43.2,-62.2,-31,-68.2C-18.8,-74.2,-6.3,-78.8,7.1,-82.8C20.5,-86.8,40.9,-90.1,42.9,-73.4Z",
+            "M37.6,-66.4C49,-60.5,58.8,-50.2,67.6,-38.3C76.4,-26.4,84.2,-13.2,84.7,0.3C85.2,13.8,78.4,27.5,69.4,39.3C60.4,51.1,49.2,61,36.3,67.1C23.4,73.2,8.8,75.5,-5.5,74.2C-19.8,72.9,-33.8,68,-45.5,59.9C-57.2,51.8,-66.6,40.5,-72.9,27.5C-79.2,14.5,-82.4,-0.2,-79.8,-13.7C-77.2,-27.2,-68.8,-39.5,-57.8,-49C-46.8,-58.5,-33.2,-65.2,-19.9,-67.7C-6.6,-70.2,6.4,-68.5,19.1,-65C31.8,-61.5,44.2,-56.2,37.6,-66.4Z",
+            "M47.5,-75.4C59.9,-67.9,67.3,-52.1,72.9,-36.4C78.5,-20.7,82.3,-5.1,80.1,9.6C77.9,24.3,69.7,38,58.5,48.6C47.3,59.2,33.1,66.7,17.9,71.2C2.7,75.7,-13.5,77.2,-27.5,72.2C-41.5,67.2,-53.3,55.7,-63.1,42.4C-72.9,29.1,-80.7,14.5,-82,-0.7C-83.3,-15.9,-78.1,-31.8,-68.3,-44.6C-58.5,-57.4,-44.1,-67.1,-29.4,-72.3C-14.7,-77.5,0.3,-78.2,15.7,-76.3C31.1,-74.4,46.9,-69.9,47.5,-75.4Z"
+        ];
+        const blobElement = document.querySelector('.blob path');
+
+        // Initialize first random quote that isn't the hardcoded one
+        function getRandomIndex() {
+            if (seenIndices.size >= quotes.length) {
+                seenIndices.clear(); // Reset if we've seen them all
+            }
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * quotes.length);
+            } while (seenIndices.has(idx));
+            seenIndices.add(idx);
+            return idx;
+        }
+
+        function generateQuote() {
+            // Animate out
+            quoteContainer.classList.remove('quote-transition-enter-active');
+            quoteContainer.classList.add('quote-transition-enter');
+            
+            // Morph blob
+            const randomPath = blobPaths[Math.floor(Math.random() * blobPaths.length)];
+            blobElement.setAttribute('d', randomPath);
+            blobElement.style.transition = "d 1s ease-in-out";
+
+            setTimeout(() => {
+                const idx = getRandomIndex();
+                const quote = quotes[idx];
+                
+                quoteText.textContent = `"${quote.text}"`;
+                quoteAuthor.textContent = quote.author;
+                
+                currentQuoteIndex = Math.min(50, seenIndices.size);
+                counterText.textContent = `${currentQuoteIndex} / 50`;
+
+                // Animate in
+                requestAnimationFrame(() => {
+                    quoteContainer.classList.remove('quote-transition-enter');
+                    quoteContainer.classList.add('quote-transition-enter-active');
+                });
+            }, 600); // Wait for fade out
+        }
+
+        generateBtn.addEventListener('click', generateQuote);
+
+        // Copy functionality
+        copyBtn.addEventListener('click', async () => {
+            const textToCopy = `${quoteText.textContent} - ${quoteAuthor.textContent}`;
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                // Fallback or ignore for this demo
+            }
+        });
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Setup initial state
+        seenIndices.add(0); // Mark the hardcoded one as seen
+        quoteContainer.classList.add('quote-transition-enter-active');
+    </script>
+</body></html>
