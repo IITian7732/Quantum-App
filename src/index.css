@@ -4,6 +4,41 @@
 
 @layer base {
   :root {
+  /* Quantum Redesign Colors */
+  --bg-primary: #FDFCF8;
+  --bg-secondary: #F5F2EB;
+  --bg-tertiary: #EDE9FE;
+  
+  --card-light: #FFFFFF;
+  --card-warm: #FFFBF5;
+  --card-lavender: #F9F7FE;
+  
+  --brand-primary: #3D31C4;
+  --brand-primary-light: #6C5CE7;
+  --brand-primary-pale: #EDE9FE;
+  
+  --accent-warm: #F4A261;
+  --accent-calm: #48CAE4;
+  --accent-fresh: #10B981;
+  --accent-soft: #F87171;
+  
+  --text-primary: #1A1A2E;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --text-inverse: #FFFFFF;
+  
+  --border-light: #F3F0E8;
+  --border-med: #EDE9FE;
+  --border-accent: #3D31C4;
+  
+  --glass-bg: rgba(255, 251, 245, 0.6);
+  --overlay-dark: rgba(26, 26, 46, 0.7);
+  
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --glow-warm: 0 0 24px rgba(244, 162, 97, 0.2);
+  --glow-indigo: 0 0 24px rgba(61, 49, 196, 0.15);
+
   --color-tertiary: 115 92 0;
   --color-surface-tint: 72 88 171;
   --color-surface-container-low: 238 245 247;
@@ -57,6 +92,31 @@
   --color-ethereal-text-variant: 69 70 81;
   }
   .dark {
+  /* Quantum Redesign Colors - Dark Mode */
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-tertiary: #334155;
+  
+  --card-light: #1E293B;
+  --card-warm: #1E293B;
+  --card-lavender: #1E293B;
+  
+  --brand-primary: #818CF8;
+  --brand-primary-light: #A5B4FC;
+  --brand-primary-pale: #312E81;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #0F172A;
+  
+  --border-light: #334155;
+  --border-med: #475569;
+  --border-accent: #818CF8;
+  
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --overlay-dark: rgba(0, 0, 0, 0.8);
+  
   --color-tertiary: 115 92 0;
   --color-surface-tint: 17 20 22;
   --color-surface-container-low: 22 29 31;
@@ -113,7 +173,12 @@
 
 @layer base {
   body {
-    @apply bg-background text-on-surface font-body-md min-h-screen antialiased;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -148,4 +213,20 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@layer utilities {
+  .progress-ring-circle {
+    transition: stroke-dashoffset 600ms ease-out;
+  }
+  
+  .stagger-1 { animation: fadeIn 0.4s ease-out 0.1s both; }
+  .stagger-2 { animation: fadeIn 0.4s ease-out 0.2s both; }
+  .stagger-3 { animation: fadeIn 0.4s ease-out 0.3s both; }
+  .stagger-4 { animation: fadeIn 0.4s ease-out 0.4s both; }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
